@@ -9,8 +9,8 @@ public class StringSort {
 
   public static void main(String[] args) {
     String test = "XYZ WOP DEF ABC KLM";
-    sortString(test);
-    System.out.println(test);
+    String testResult = sortString(test);
+    System.out.println(testResult);
   }
 
   /**
@@ -27,20 +27,20 @@ public class StringSort {
     String[] disorderString = initial.split(" ");
     List<String> disorderList = new ArrayList<>(Arrays.asList(disorderString));
 
-    List<String> orderString = sortArrayString(disorderList);
-    System.out.println("tech print: " + orderString);
+    List<String> orderString = sortListString(disorderList);
 
     // complexity O(n) - one cycle with for
-    String result = null;
+    String result = "";
     String gap = " ";
-    for (String word : orderString) {
-      result = word + gap;
+    for (int i = 0; i < orderString.size() - 1; i++) {
+      result = result + orderString.get(i) + gap;
     }
+    result = result + orderString.get(orderString.size() - 1);
 
     return result;
   }
 
-  private static List<String> sortArrayString(List<String> words) {
+  private static List<String> sortListString(List<String> words) {
 
     //guardian condition for escape from recursion
     if (words.size() < 2) {
@@ -53,8 +53,8 @@ public class StringSort {
     List<String> left = words.subList(0, mid);
     List<String> right = words.subList(mid, words.size());
 
-    left = sortArrayString(left);
-    right = sortArrayString(right);
+    left = sortListString(left);
+    right = sortListString(right);
 
     return merge(left, right);
   }
@@ -69,7 +69,7 @@ public class StringSort {
       String second = wordB.get(i2);
       if (first.compareTo(second) < 1) {
         // on that place, I understand, that String[] not so easy to add new element and
-        // I must to updating all methods :)
+        // I must to updating all methods :) or my complexity will be at list O(n^2) or infinity;
         result.add(first);
         ++i1;
       } else {
