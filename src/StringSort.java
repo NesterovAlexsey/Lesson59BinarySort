@@ -8,7 +8,7 @@ import java.util.List;
 public class StringSort {
 
   public static void main(String[] args) {
-    String test = "Добро Глаголь Аз Веди Есть Буки";
+    String test = "XYZ WOP DEF ABC KLM";
     sortString(test);
     System.out.println(test);
   }
@@ -28,6 +28,7 @@ public class StringSort {
     List<String> disorderList = new ArrayList<>(Arrays.asList(disorderString));
 
     List<String> orderString = sortArrayString(disorderList);
+    System.out.println("tech print: " + orderString);
 
     // complexity O(n) - one cycle with for
     String result = null;
@@ -40,6 +41,7 @@ public class StringSort {
   }
 
   private static List<String> sortArrayString(List<String> words) {
+
     //guardian condition for escape from recursion
     if (words.size() < 2) {
       return words;
@@ -58,7 +60,7 @@ public class StringSort {
   }
 
   private static List<String> merge(List<String> wordA, List<String> wordB) {
-    List<String> result = null;
+    List<String> result = new ArrayList<>();
     int i1 = 0;
     int i2 = 0;
 
@@ -76,12 +78,12 @@ public class StringSort {
       }
     }
 
-    while(i1 < wordA.size()) {
+    while (i1 < wordA.size()) {
       result.add(wordA.get(i1));
       ++i1;
     }
 
-    while(i2 < wordB.size()) {
+    while (i2 < wordB.size()) {
       result.add(wordB.get(i2));
       ++i2;
     }
